@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table, th, td {
+      border:solid black;
+    }
+</style>
+<body>
+    <a href="addFR" method="post"><button>ADD FRIEND</button></a>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Years</th>
+            <th>city</th>
+            <th>Position</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for friend in friends%}
+        <tr>
+
+        <td>{{friend.name}}</td>
+        <td>{{friend.age}}</td>
+        <td>{{friend.years}}</td>
+        <td>{{friend.city}}</td>
+        <td>{{friend.position}}</td>
+        <td><a href="updateFR/{{friend.id}}"><button>Update</button></a></td>
+        <td><a href="deleteFR/{{friend.id}}"><button>Delete</button></a></td>
+
+        </tr>   
+        {% endfor %}
+</body>
+</html>

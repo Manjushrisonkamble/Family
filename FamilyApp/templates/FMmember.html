@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="Fm.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+    table, th, td {
+      border: solid blue;
+    }
+    #navbar{
+      colour=black;
+      font-size= 50 px;
+      background-colour=blue; 
+      width=100%;
+    }
+    
+</style>
+<body>
+
+  <div>
+    <nav id="navbar">
+
+     WELCOME To the Family............!
+
+    <a href="addFM"><button type="submit"  class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Add Family</button></a>
+    <a href="signup"><button type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button></a>
+    <a href="login"><button type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button></a>
+
+    </nav>
+
+  </div>
+
+  {% if user.is_authenticated %}
+          <span class="navbar-text">{{user.email}}&nbsp&nbsp</span>
+          <a href="logout" type="submit"><button type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">LogOut</button></a>
+          {% else %}
+          <a href="login" type="submit"><button type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button></a>
+          {% endif %}
+    <br><br>
+    <a href="addFM"><button type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Add Family</button></a>
+    <a href="signup"><button type class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button></a>
+    <a href="login"><button type="submit" class="btn btn-primary" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button></a>
+
+    <br><br>
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Education</th>
+        <th>City</th>
+        <th>Relation</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for family in families%}
+    <tr>
+        <td>{{family.name}}</td>
+        <td>{{family.age}}</td>
+        <td>{{family.education}}</td>
+        <td>{{family.city}}</td>
+        <td>{{family.relation}}</td>
+        <td><a href="updateFM/{{family.id}}"><button>Update</button></a></td>
+        <td><a href="deleteFM/{{family.id}}"><button>Delete</button></a></td>
+
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% for message in messages  %}            
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message : </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      {% endfor %}    
+    
+</body>
+</html>
